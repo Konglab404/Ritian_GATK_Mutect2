@@ -7,6 +7,8 @@
 
 
 
+#The scripts uses PoN file of 1000G as normal samples
+
 for i in `seq -f '%04g' 0 19`
 do
     gatk Mutect2 -R ~/data/BasicResource/Ref/Homo_sapiens_assembly38_gatk.fasta -I ~/data/Data/0_bwa_bam/${sample}.dedup.BQSR.sorted.bam -tumor ${sample} -L ~/data/BasicResource/GATK_bundle/hg38_scatter_interval_files/$i-scattered.interval_list --germline-resource ~/data/BasicResource/GATK_bundle/af-only-gnomad.hg38.vcf.gz --af-of-alleles-not-in-resource 0.00003125 --panel-of-normals ~/data/BasicResource/GATK_bundle/1000g_pon.hg38.vcf.gz -O ~/data/Data/0_bwa_bam/${sample}_somatic.$i.vcf.gz &
